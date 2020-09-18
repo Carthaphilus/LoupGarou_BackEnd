@@ -1,0 +1,56 @@
+<header ng-switch on="$location.path().indexOf('/Messages/new') > -1">
+    <h3 ng-switch-when="true">Create a new Message</h3>
+    <h3 ng-switch-when="false">View or edit Message</h3>
+</header>
+<form id="MessageForm" name="MessageForm" class="form-horizontal" role="form">
+    
+    <div class="form-group" ng-class="{'has-error': MessageForm.dateMessage.$invalid}">
+        <label for="dateMessage" class="col-sm-2 control-label">Date Message</label>
+        <div id="dateMessageControls" class="col-sm-10">
+            <input id="dateMessage" name="dateMessage" type="text" class="form-control" ng-model="message.dateMessage" placeholder="Enter the Message Date Message"></input>
+        </div>
+    </div>
+
+    <div class="form-group" ng-class="{'has-error': MessageForm.message.$invalid}">
+        <label for="message" class="col-sm-2 control-label">Message</label>
+        <div id="messageControls" class="col-sm-10">
+            <input id="message" name="message" type="text" class="form-control" ng-model="message.message" placeholder="Enter the Message Message"></input>
+        </div>
+    </div>
+
+    <div class="form-group" ng-class="{'has-error': MessageForm.joueurId.$invalid}">
+        <label for="joueurId" class="col-sm-2 control-label">Joueur Id</label>
+        <div id="joueurIdControls" class="col-sm-10">
+        <select id="joueurId" name="joueurId" class="form-control" ng-model="joueurIdSelection" ng-options="j.text for j in joueurIdSelectionList"  >
+            <option value="">Choose a Joueur Id</option>
+        </select>
+        </div>
+    </div>
+
+    <div class="form-group" ng-class="{'has-error': MessageForm.partieId.$invalid}">
+        <label for="partieId" class="col-sm-2 control-label">Partie Id</label>
+        <div id="partieIdControls" class="col-sm-10">
+        <select id="partieId" name="partieId" class="form-control" ng-model="partieIdSelection" ng-options="p.text for p in partieIdSelectionList"  >
+            <option value="">Choose a Partie Id</option>
+        </select>
+        </div>
+    </div>
+
+    <div class="form-group" ng-class="{'has-error': MessageForm.chatId.$invalid}">
+        <label for="chatId" class="col-sm-2 control-label">Chat Id</label>
+        <div id="chatIdControls" class="col-sm-10">
+        <select id="chatId" name="chatId" class="form-control" ng-model="chatIdSelection" ng-options="c.text for c in chatIdSelectionList"  >
+            <option value="">Choose a Chat Id</option>
+        </select>
+        </div>
+    </div>
+
+
+    <div class="form-group">
+        <div class="col-sm-offset-2 col-sm-10">
+            <button id="saveMessage" name="saveMessage" class="btn btn-primary" ng-disabled="isClean() || MessageForm.$invalid" ng-click="save()"><span class="glyphicon glyphicon-ok-sign"></span> Save</button>
+            <button id="cancel" name="cancel" class="btn btn-default" ng-click="cancel()"><span class="glyphicon glyphicon-remove-sign"></span> Cancel</button>
+            <button id="deleteMessage" name="deleteMessage" class="btn btn-danger" ng-show="message.idMessage" ng-click="remove()"><span class="glyphicon glyphicon-trash"></span> Delete</button>
+        </div>
+    </div>
+</form>

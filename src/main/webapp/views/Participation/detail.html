@@ -1,0 +1,24 @@
+<header ng-switch on="$location.path().indexOf('/Participations/new') > -1">
+    <h3 ng-switch-when="true">Create a new Participation</h3>
+    <h3 ng-switch-when="false">View or edit Participation</h3>
+</header>
+<form id="ParticipationForm" name="ParticipationForm" class="form-horizontal" role="form">
+    
+
+
+    <div class="form-group" ng-class="{'has-error': ParticipationForm.chef.$invalid}">
+        <label for="chef" class="col-sm-2 control-label">Chef</label>
+        <div id="chefControls" class="col-sm-10">
+            <input id="chef" name="chef" type="checkbox" class="checkbox" ng-model="participation.chef" placeholder="Enter the Participation Chef"></input>
+        </div>
+    </div>
+
+
+    <div class="form-group">
+        <div class="col-sm-offset-2 col-sm-10">
+            <button id="saveParticipation" name="saveParticipation" class="btn btn-primary" ng-disabled="isClean() || ParticipationForm.$invalid" ng-click="save()"><span class="glyphicon glyphicon-ok-sign"></span> Save</button>
+            <button id="cancel" name="cancel" class="btn btn-default" ng-click="cancel()"><span class="glyphicon glyphicon-remove-sign"></span> Cancel</button>
+            <button id="deleteParticipation" name="deleteParticipation" class="btn btn-danger" ng-show="participation.joueurId" ng-click="remove()"><span class="glyphicon glyphicon-trash"></span> Delete</button>
+        </div>
+    </div>
+</form>

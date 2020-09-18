@@ -1,0 +1,29 @@
+<header ng-switch on="$location.path().indexOf('/Parties/new') > -1">
+    <h3 ng-switch-when="true">Create a new Partie</h3>
+    <h3 ng-switch-when="false">View or edit Partie</h3>
+</header>
+<form id="PartieForm" name="PartieForm" class="form-horizontal" role="form">
+    
+    <div class="form-group" ng-class="{'has-error': PartieForm.resultat.$invalid}">
+        <label for="resultat" class="col-sm-2 control-label">Resultat</label>
+        <div id="resultatControls" class="col-sm-10">
+            <input id="resultat" name="resultat" type="text" class="form-control" ng-model="partie.resultat" placeholder="Enter the Partie Resultat"></input>
+        </div>
+    </div>
+
+    <div class="form-group" ng-class="{'has-error': PartieForm.datePartie.$invalid}">
+        <label for="datePartie" class="col-sm-2 control-label">Date Partie</label>
+        <div id="datePartieControls" class="col-sm-10">
+            <input id="datePartie" name="datePartie" type="text" class="form-control" ng-model="partie.datePartie" placeholder="Enter the Partie Date Partie"></input>
+        </div>
+    </div>
+
+
+    <div class="form-group">
+        <div class="col-sm-offset-2 col-sm-10">
+            <button id="savePartie" name="savePartie" class="btn btn-primary" ng-disabled="isClean() || PartieForm.$invalid" ng-click="save()"><span class="glyphicon glyphicon-ok-sign"></span> Save</button>
+            <button id="cancel" name="cancel" class="btn btn-default" ng-click="cancel()"><span class="glyphicon glyphicon-remove-sign"></span> Cancel</button>
+            <button id="deletePartie" name="deletePartie" class="btn btn-danger" ng-show="partie.partieId" ng-click="remove()"><span class="glyphicon glyphicon-trash"></span> Delete</button>
+        </div>
+    </div>
+</form>
